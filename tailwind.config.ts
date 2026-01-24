@@ -12,7 +12,7 @@ export default {
         extend: {
             colors: {
                 background: {
-                    DEFAULT: 'hsl(var(--background))',
+                    DEFAULT: 'var(--background)',
                     light: 'hsl(var(--background-light))',
                 },
                 foreground: 'hsl(var(--foreground))',
@@ -25,7 +25,7 @@ export default {
                     foreground: 'hsl(var(--popover-foreground))',
                 },
                 primary: {
-                    DEFAULT: 'hsl(var(--primary))',
+                    DEFAULT: 'var(--primary)',
                     foreground: 'hsl(var(--primary-foreground))',
                 },
                 secondary: {

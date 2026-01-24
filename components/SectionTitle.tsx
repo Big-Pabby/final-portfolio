@@ -33,12 +33,7 @@ const SectionTitle = ({ icon, title, className, classNames }: Props) => {
                     )}
                 />
             )}
-            <h2
-                className={cn(
-                    'text-xl uppercase leading-none',
-                    classNames?.title,
-                )}
-            >
+            <h2 className={cn('text-xl leading-none', classNames?.title)}>
                 {title}
             </h2>
         </div>
