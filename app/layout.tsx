@@ -22,7 +22,8 @@ const robotoFlex = Roboto_Flex({
 
 export const metadata: Metadata = {
     title: 'Portfolio - Victor Adekunle',
-    description: 'Personal portfolio of Victor Adekunle',
+    description:
+        'Personal portfolio of Victor Adekunle — a software engineer building scalable web, mobile, and AI-powered products across the full stack.',
 };
 
 export default function RootLayout({

@@ -68,12 +68,14 @@ const AboutMe = () => {
                         <div className="text-lg text-muted-foreground max-w-[450px]">
                             <p className="slide-up-and-fade">
                                 I’m a software engineer who loves building
-                                impactful, user-focused applications that help
-                                change lives. I work primarily with modern web
-                                technologies like JavaScript, TypeScript, React,
-                                Next.js, Vue, and Nuxt, with a strong focus on
+                                impactful, user-focused products that help change
+                                lives. I work across the stack — from polished
+                                frontends in React, Next.js, Vue, Nuxt, and React
+                                Native to the APIs that power them with Node.js,
+                                Express, PostgreSQL, and Prisma. I also build
+                                AI-driven features, and I care deeply about
                                 performance, clean architecture, and scalable
-                                frontend systems.
+                                systems.
                             </p>
                             <p className="mt-3 slide-up-and-fade">
                                 Beyond code, I’m deeply inspired by storytelling

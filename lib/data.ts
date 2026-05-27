@@ -8,6 +8,7 @@ export const GENERAL_INFO = {
 
     oldPortfolio: 'https://medium.com/@victoradekunle312',
     upworkProfile: 'mailto:victoradekunle312@gmail.com',
+    resume: '/Victor_Adekunle_CV.pdf',
 };
 
 export const SOCIAL_LINKS = [
@@ -127,39 +128,45 @@ export const PROJECTS: IProject[] = [
         liveUrl: 'https://www.parrot.cx/',
         year: 2023,
         description: `
-    A social review platform built to connect customers and businesses through trusted, location-based reviews and real-time engagement. I worked as a Frontend Engineer on the core web applications, including the customer platform, business dashboard, and admin management system. <br/><br/>
+    A social review platform built to connect customers and businesses through trusted, location-based reviews and real-time engagement. I worked as a Software Engineer across the platform's web and mobile applications — including the customer experience, business dashboard, admin management system, and a cross-platform React Native mobile app. <br/><br/>
 
 Key Features:<br/>
 <ul>
   <li>🌍 Customer Review Platform: Intuitive interface for discovering businesses, leaving reviews, and engaging with feedback</li>
   <li>🏢 Business Web App: Tools for businesses to manage profiles, respond to reviews, and track customer sentiment</li>
+  <li>📱 Cross-Platform Mobile App: React Native app delivering reviews, media uploads, push notifications, and real-time engagement on Android and iOS</li>
   <li>🛠️ Admin Dashboard: Centralized moderation, analytics, and platform management</li>
-  <li>📱 Fully Responsive: Seamless experience across mobile, tablet, and desktop devices</li>
-  <li>⚡ High Performance: Optimized frontend architecture for fast load times and smooth interactions</li>
+  <li>📊 Analytics: Interactive dashboards surfacing review data, engagement metrics, and customer insights</li>
+  <li>⚡ High Performance: Optimized architecture for fast load times and smooth interactions across web and mobile</li>
 </ul><br/>
 
       `,
         role: `
-  Senior Frontend Engineer <br/>
-Led the frontend architecture and delivery of a large-scale, multi-tenant social review platform spanning multiple web applications for customers, businesses, and internal administrators.
+  Software Engineer <br/>
+Built and maintained customer, business, and admin experiences across web and mobile for a large-scale, multi-tenant social review platform.
 <ul>
-  <li>🌍 Platform Scale: Built and maintained a customer-facing web application on a dedicated Nuxt.js codebase, alongside a shared business and admin application supporting a growing multi-tenant user base</li>
-  <li>🎨 Frontend Architecture: Designed scalable, modular UI systems across codebases using Nuxt.js, Tailwind CSS, and shadcn to ensure consistent UX and rapid development</li>
-  <li>🔄 State & Data Management: Implemented robust client-side state management with Pinia and server-state handling with TanStack Query for efficient caching, synchronization, and background data updates</li>
-  <li>📊 Analytics & Insights: Built interactive analytics dashboards with Chart.js to surface review trends, engagement metrics, and business performance insights</li>
-  <li>🛡️ Role-Based Access Control: Implemented permission-aware UI flows for business users and administrators within the shared codebase</li>
-  <li>⚡ Performance at Scale: Optimized rendering, hydration, and data-fetching strategies across applications to deliver fast, reliable experiences under high traffic</li>
-  <li>👥 Technical Leadership: Defined frontend standards across multiple codebases, reviewed pull requests, and mentored engineers on scalable Nuxt, Pinia, and data-fetching patterns</li>
+  <li>📱 Cross-Platform Mobile: Built and maintained React Native features including authentication flows, push notifications, media uploads, review interactions, and real-time user engagement across Android and iOS</li>
+  <li>🎨 Web Architecture: Designed scalable, modular UI systems with Nuxt.js, Tailwind CSS, TypeScript, and shadcn for consistent UX across the customer, business, and admin apps</li>
+  <li>🔌 API Integration: Integrated RESTful APIs and optimized mobile performance for smooth navigation, fast data loading, and reliable behaviour on real devices</li>
+  <li>♻️ Reusable Components: Implemented reusable mobile UI components, state management, and responsive layouts to keep web and mobile consistent</li>
+  <li>🔄 State & Data Management: Managed client state with Pinia and server state with TanStack Query, applying caching strategies for efficient synchronization and background updates</li>
+  <li>📊 Analytics & Insights: Built interactive analytics dashboards so businesses could analyze review data, engagement metrics, and customer insights</li>
+  <li>🎓 Zacrac Learning: Redesigned the Zacrac Learning website using Nuxt.js and Vuex to improve e-learning accessibility and dynamic content management</li>
+  <li>🌐 Main Website: Maintained and upgraded the Zacrac main website, including an admin dashboard for efficient blog and project management</li>
+  <li>🚀 CI/CD: Established and maintained deployment pipelines on Azure and AWS for streamlined CI/CD workflows and reliable delivery</li>
 </ul>
 
       `,
         techStack: [
             'Nuxt.js',
-            'Tanstack Query',
+            'React Native',
+            'TypeScript',
             'Tailwind CSS',
-            'Shadcn',
-            'Swiper.js',
-            'Vercel',
+            'Tanstack Query',
+            'Pinia',
+            'REST APIs',
+            'Azure',
+            'AWS',
         ],
         thumbnail: '/projects/thumbnail/parrot.jpg',
         longThumbnail: '/projects/long/parrot.jpg',
@@ -288,7 +295,15 @@ Built and maintained the frontend workflows for a role-based audio translation a
     {
         title: 'Vuhosi',
         slug: 'vuhosi',
-        techStack: ['Nuxtjs', 'Tailwind CSS', 'Pinia', 'Websocket'],
+        techStack: [
+            'Nuxt.js',
+            'TypeScript',
+            'Tailwind CSS',
+            'Pinia',
+            'OpenAI API',
+            'WebSocket',
+            'Stripe',
+        ],
         thumbnail: '/projects/thumbnail/vuhosi.jpg',
         longThumbnail: '/projects/long/vuhosi.jpg',
         images: [
@@ -301,7 +316,7 @@ Built and maintained the frontend workflows for a role-based audio translation a
         ],
         liveUrl: 'https://www.vuhosi.com/',
         year: 2024,
-        description: `Vuhosi is an AI-powered startup analysis platform that helps investors evaluate early-stage companies by transforming uploaded documents into actionable insights. Startups upload pitch decks and internal documents, which are analyzed to provide a comprehensive view of the business, enabling investors to make informed decisions with confidence. <br/><br/>
+        description: `Vuhosi is an AI-powered platform for investors and founders that evaluates early-stage companies by transforming uploaded documents into actionable insights. Founders upload pitch decks and internal documents, which are analyzed to provide a comprehensive view of the business, enabling investors to make informed decisions with confidence. <br/><br/>
 
 The platform delivers structured insights across company overview, risk assessment, team strength, market fit, and comparative analysis. It also features AI mentors—domain-specific assistants that allow investors to explore insights, ask follow-up questions, and discuss startups within specific industry contexts. <br/><br/>
 
@@ -313,17 +328,21 @@ Key Features:<br/>
   <li>📊 Comparative Analysis: Side-by-side comparisons with similar startups and benchmarks</li>
   <li>🤖 AI Mentors: Niche-focused AI assistants for interactive discussion and deeper insights</li>
   <li>⚡ Real-Time Insights: Live analysis updates and interactive exploration of results</li>
+  <li>📤 File Uploads: Simple document upload for fast, reliable data ingestion into AI pipelines</li>
+  <li>💳 Subscriptions: Stripe-powered subscription management and access control</li>
 </ul>
 .`,
-        role: `Software Engineer (Frontend) <br/>
-Led the implementation of the frontend experience for an AI-driven investor analysis platform.
+        role: `Software Engineer & AI Engineer <br/>
+Built the frontend experience and the AI-driven workflows for an AI platform serving investors and founders.
 <ul>
-  <li>🎨 Application UI: Built a modern, responsive web application using Nuxt.js and Tailwind CSS</li>
-  <li>📄 Document Analysis Experience: Designed user flows for uploading, processing, and exploring AI-generated startup insights</li>
-  <li>🤖 AI Mentor Interfaces: Developed conversational UIs for interacting with domain-specific AI mentors</li>
-  <li>🔄 State Management: Managed complex client-side state with Pinia to handle analysis stages and user interactions</li>
-  <li>🔌 Real-Time Updates: Integrated WebSocket communication to stream live analysis progress and results</li>
-  <li>⚡ Performance & UX: Optimized rendering and interaction patterns for data-heavy views and investor dashboards</li>
+  <li>🎨 Application UI: Built a modern, responsive web application using Nuxt.js, Tailwind CSS, and TypeScript</li>
+  <li>🤖 AI Engineering: Designed and integrated AI-driven workflows, prompt engineering pipelines, and LLM-powered features to deliver intelligent insights and recommendations</li>
+  <li>🧠 Model Integration: Built integrations with third-party AI providers (e.g. OpenAI APIs) and implemented data preprocessing, contextual prompting, and response handling for accurate, reliable outputs</li>
+  <li>🔌 Real-Time Analysis: Engineered real-time data analysis with WebSocket integration, delivering immediate feedback on key metrics and AI-generated insights</li>
+  <li>📤 File Uploads: Created an intuitive file upload feature for smooth data transmission to APIs and AI services, improving data ingestion and user interaction</li>
+  <li>💳 Subscriptions: Implemented a subscription management system with Stripe to streamline payments and user access</li>
+  <li>📧 Notifications: Integrated a proactive email notification system to enhance engagement and ensure timely communication</li>
+  <li>🔄 State Management: Managed complex client-side state with Pinia across analysis stages and user interactions</li>
 </ul>
 `,
     },
@@ -341,9 +360,10 @@ Led the implementation of the frontend experience for an AI-driven investor anal
         thumbnail: '/projects/thumbnail/storytelling.jpg',
         longThumbnail: '/projects/long/storytelling.jpg',
         images: [
-            '/projects/images/property-pro-1.png',
-            '/projects/images/property-pro-2.png',
-            '/projects/images/property-pro-3.png',
+            '/projects/images/storytelling-1.jpg',
+            '/projects/images/storytelling-2.jpg',
+            '/projects/images/storytelling-3.jpg',
+            '/projects/images/storytelling-4.jpg',
         ],
         liveUrl: 'https://demo.propertypro.siphertech.com/',
         year: 2023,
@@ -354,6 +374,46 @@ Led the implementation of the frontend experience for an AI-driven investor anal
         - Integrated dynamic state management for efficient handling of property data.<br/>
         - Implemented multi-language support with React i18n to cater to diverse audiences.<br/>
         - Enhanced user interaction with animations and transitions using Framer Motion.`,
+    },
+    {
+        title: 'HomeBridge',
+        slug: 'homebridge',
+        techStack: [
+            'Next.js',
+            'Node.js',
+            'Express.js',
+            'PostgreSQL',
+            'Prisma',
+            'Tailwind CSS',
+            'Tanstack Query',
+        ],
+        thumbnail: '/projects/thumbnail/homebridge.jpg',
+        longThumbnail: '/projects/long/homebridge.jpg',
+        images: [
+            '/projects/images/homebridge-1.jpg',
+            '/projects/images/homebridge-2.jpg',
+            '/projects/images/homebridge-3.jpg',
+            '/projects/images/homebridge-4.jpg',
+        ],
+        year: 2024,
+        description: `HomeBridge is a property and housing platform that connects people with listings and the services around them. Beyond the frontend, I collaborated closely on the backend to design and ship the APIs that power the product. <br/><br/>
+
+Key Features:<br/>
+<ul>
+  <li>🏠 Property Listings: Browse, search, and manage housing listings through a responsive web interface</li>
+  <li>🔐 Authentication: Secure user accounts with role-based access</li>
+  <li>🔌 REST API: Backend services exposing well-structured endpoints consumed by the web client</li>
+  <li>🗄️ Relational Data: A PostgreSQL schema modelled and queried through the Prisma ORM</li>
+</ul>`,
+        role: `Software Engineer (Full-Stack) <br/>
+Worked across the stack, collaborating on the backend alongside building the frontend.
+<ul>
+  <li>🛠️ Backend Collaboration: Partnered on the backend using Node.js and Express.js to build and maintain RESTful API endpoints</li>
+  <li>🗄️ Database & ORM: Modelled relational data in PostgreSQL and used Prisma for type-safe queries, migrations, and schema management</li>
+  <li>🔐 Auth & Validation: Helped implement authentication, request validation, and error handling across API routes</li>
+  <li>🎨 Frontend: Built the Next.js client with Tailwind CSS, managing server state with TanStack Query</li>
+  <li>🤝 Collaboration: Worked closely with the team to align API contracts between the frontend and backend</li>
+</ul>`,
     },
     {
         title: 'GTV Reviewer',
@@ -373,31 +433,7 @@ Led the implementation of the frontend experience for an AI-driven investor anal
             'I developed Crenotive, a portfolio website using Html, SASS, and jQuery to showcase services and expertise. The design focuses on responsive user experience and effective presentation of professional achievements.',
         role: ``,
     },
-    {
-        title: 'HomeBrigde',
-        slug: 'homebridge',
-        techStack: [
-            'Next.js',
-            'Shadcn',
-            'Zustand',
-            'Tanstack Query',
-            'Tailwind CSS',
-        ],
-        thumbnail: '/projects/thumbnail/homebridge.jpg',
-        longThumbnail: '/projects/long/homebridge.jpg',
-        images: [
-            '/projects/images/devLinks-1.png',
-            '/projects/images/devLinks-2.png',
-            '/projects/images/devLinks-3.png',
-        ],
-        sourceCode: 'https://github.com/Tajmirul/devsLink',
-        liveUrl: 'https://devlinks-demo.vercel.app/auth/signin',
-        year: 2023,
-        description: `One of the most challenging projects in Frontend Mentor.<br/><br/>
 
-            I developed a LinkSharing App as part of the Frontend Mentor challenge, utilizing React, Redux, and Tailwind CSS to create a responsive and feature-rich platform. The app allows users to share, save, and explore links, with a focus on intuitive design and smooth navigation. Advanced state management ensures efficient data handling for user interactions.`,
-        role: ``,
-    },
     {
         title: 'TasteClan',
         slug: 'tasteclan',
@@ -421,19 +457,24 @@ Led the implementation of the frontend experience for an AI-driven investor anal
 
 export const MY_EXPERIENCE = [
     {
+        title: 'Full Stack Engineer',
+        company: 'HomeBridge',
+        duration: 'Nov 2025 - March 2026',
+    },
+    {
         title: 'Software Engineer (Frontend)',
         company: 'Plotweaver',
         duration: 'March 2025 - Present',
     },
     {
-        title: 'Software Engineer (Frontend)',
+        title: 'Software Engineer',
         company: 'Zacrac',
         duration: 'Feb 2023 - Present',
     },
     {
-        title: 'Frontend Engineer',
+        title: 'Software Engineer & AI Engineer',
         company: 'Vuhosi',
-        duration: 'Oct 2024 - Feb 2025',
+        duration: 'Oct 2024 - Jun 2025',
     },
     {
         title: 'Frontend Developer (Intern)',

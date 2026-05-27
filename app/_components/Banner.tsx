@@ -48,28 +48,42 @@ const Banner = () => {
                     </h1>
                     <p className="banner-description slide-up-and-fade mt-6 text-lg text-muted-foreground">
                         I’m a Software Engineer who builds fast, scalable, and
-                        user-focused web applications. I specialize in modern
-                        JavaScript frameworks like React, Next.js, and Vue, with
-                        a strong focus on clean UI, performance, and
-                        maintainable code. I enjoy turning complex ideas into
-                        smooth, intuitive digital experiences.
+                        user-focused products across web and mobile. I work end
+                        to end — crafting clean frontends with React, Next.js,
+                        Vue, and React Native, and building the APIs behind them
+                        with Node.js, Express, and PostgreSQL. I also love
+                        integrating AI to turn complex ideas into smooth,
+                        intelligent experiences.
                     </p>
-                    <Button
-                        as="link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={GENERAL_INFO.upworkProfile}
-                        variant="primary"
-                        className="mt-9 banner-button slide-up-and-fade rounded"
-                    >
-                        Say Hi
-                    </Button>
+                    <div className="mt-9 flex flex-wrap items-center gap-4">
+                        <Button
+                            as="link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={GENERAL_INFO.upworkProfile}
+                            variant="primary"
+                            className="banner-button slide-up-and-fade rounded"
+                        >
+                            Say Hi
+                        </Button>
+                        <Button
+                            as="link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={GENERAL_INFO.resume}
+                            download
+                            variant="secondary"
+                            className="banner-button slide-up-and-fade rounded"
+                        >
+                            Download CV
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="md:absolute bottom-[10%] right-[4%] flex md:flex-col gap-4 md:gap-8 text-center md:text-right">
                     <div className="slide-up-and-fade">
                         <h5 className="text-3xl sm:text-4xl font-anton text-primary mb-1.5">
-                            4+
+                            5+
                         </h5>
                         <p className="text-muted-foreground">
                             Years of Experience

@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { MoveUpRight } from 'lucide-react';
+import { MoveUpRight, Download } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
@@ -148,8 +148,18 @@ const Navbar = () => {
 
                 <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
                     <p className="text-muted-foreground mb-4">GET IN TOUCH</p>
-                    <a href={`mailto:${GENERAL_INFO.email}`}>
+                    <a className="block" href={`mailto:${GENERAL_INFO.email}`}>
                         {GENERAL_INFO.email}
+                    </a>
+                    <a
+                        href={GENERAL_INFO.resume}
+                        target="_blank"
+                        rel="noreferrer"
+                        download
+                        className="mt-4 inline-flex items-center gap-2 hover:text-primary"
+                    >
+                        <Download size={18} />
+                        Download CV
                     </a>
                 </div>
             </div>
