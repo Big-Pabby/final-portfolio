@@ -1,6 +1,7 @@
 import { IProject } from '@/types';
 
 export const GENERAL_INFO = {
+    name: 'Victor Adekunle',
     email: 'victoradekunle312@gmail.com',
 
     emailSubject: "Let's collaborate on a project",
@@ -9,7 +10,15 @@ export const GENERAL_INFO = {
     oldPortfolio: 'https://medium.com/@victoradekunle312',
     upworkProfile: 'mailto:victoradekunle312@gmail.com',
     resume: '/Victor_Adekunle_CV.pdf',
+    // Shown as a status pill in the hero. Set to '' to hide it.
+    availability: 'Open to new opportunities',
 };
+
+export const STATS = [
+    { value: '5+', label: 'Years of Experience' },
+    { value: '10+', label: 'Completed Projects' },
+    { value: '10K+', label: 'Hours Worked' },
+];
 
 export const SOCIAL_LINKS = [
     { name: 'github', url: 'https://github.com/Big-Pabby' },
@@ -123,6 +132,49 @@ export const MY_STACK = {
 
 export const PROJECTS: IProject[] = [
     {
+        title: 'BaissonCV',
+        slug: 'baissoncv',
+        techStack: [
+            'Next.js',
+            'TypeScript',
+            'Tailwind CSS',
+            'AI Integration',
+            'Stripe',
+            'Job Board APIs',
+        ],
+        thumbnail: '/projects/thumbnail/baissoncv.jpg',
+        images: [
+            '/projects/images/baissoncv-1.jpg',
+            '/projects/images/baissoncv-2.jpg',
+            '/projects/images/baissoncv-3.jpg',
+            '/projects/images/baissoncv-4.jpg',
+            '/projects/images/baissoncv-5.jpg',
+        ],
+        liveUrl: 'https://www.baissoncv.app/',
+        year: 2026,
+        description: `BaissonCV puts your résumé on a URL. Upload a PDF, DOCX, or JSON Resume and the AI extracts the structure, the editor polishes it, and a magic link makes it yours — live at baissoncv.app/yourname, updating in real time as you edit, with no account needed to view it. <br/><br/>
+On top of the free editor and hosting, paid plans add AI writing on every line, an ATS scanner that scores a CV from 0 to 100 against any job description, cover letters, translation into French, Spanish, Yoruba, and Igbo, live job discovery that pulls 50 openings matched to the CV, auto-tailoring for a specific role, and visitor analytics. A recruiter workspace runs the same engine in reverse: post a job description, and every applicant's BaissonCV link is scored and ranked in an auto-sorted inbox. <br/><br/>
+Key Features:<br/>
+<ul>
+  <li>🔗 Résumé on a URL: A shareable baissoncv.app/yourname page that updates live as you edit, plus multiple CV versions with time-travel snapshots</li>
+  <li>📄 Upload to sign in: PDF, DOCX, or JSON Resume parsed into structured sections, confirmed with a magic-link email</li>
+  <li>🤖 AI on every line: Rewrite bullets, draft summaries, suggest missing skills, translate, and prep interview questions from the CV and job description</li>
+  <li>🎯 ATS Scanner: Paste a job description for a 0–100 match score, missing keywords, one-click fixes, and cover letters — also available as a one-off scan with Stripe checkout</li>
+  <li>💼 Job Discovery: Live openings from Adzuna, Remotive, Arbeitnow, and The Muse, auto-tailored to each role, with visitor analytics on the Best plan</li>
+  <li>🏢 Recruiter Workspace: Job slugs, an auto-ranked applicant inbox, workspaces and roles, and CSV export of top candidates</li>
+  <li>📤 Export Anywhere: PDF (A4 / US Letter), DOCX, plain text, JSON Resume, and vCard</li>
+</ul>`,
+        role: `Software Engineer <br/>
+Designed and built BaissonCV end to end — product, frontend, backend, and AI features.
+<ul>
+  <li>🎨 Built the marketing site, the résumé editor with live preview and templates, public résumé pages, the ATS scanner, pricing, and the recruiter workspace with Next.js, TypeScript, and Tailwind CSS</li>
+  <li>🤖 Implemented the AI pipeline: résumé parsing from PDF, DOCX, and JSON, line-by-line rewriting, ATS scoring against job descriptions, cover letters, and translation</li>
+  <li>💼 Integrated the Adzuna, Remotive, Arbeitnow, and The Muse job APIs for live, CV-matched job discovery and auto-tailoring</li>
+  <li>💳 Set up magic-link authentication, Free / Better / Best subscriptions, one-off ATS scans, and payments with Stripe</li>
+  <li>📤 Built exports to PDF, DOCX, plain text, JSON Resume, and vCard</li>
+</ul>`,
+    },
+    {
         title: 'Parrot',
         slug: 'parrot',
         liveUrl: 'https://www.parrot.cx/',
@@ -169,7 +221,6 @@ Built and maintained customer, business, and admin experiences across web and mo
             'AWS',
         ],
         thumbnail: '/projects/thumbnail/parrot.jpg',
-        longThumbnail: '/projects/long/parrot.jpg',
         images: [
             '/projects/images/parrot-profile.jpg',
             '/projects/images/parrot-timeline.jpg',
@@ -188,7 +239,6 @@ Built and maintained customer, business, and admin experiences across web and mo
             'Map Integration',
         ],
         thumbnail: '/projects/thumbnail/cando.jpg',
-        longThumbnail: '/projects/long/cando.jpg',
         images: [
             '/projects/images/cando-1.jpg',
             '/projects/images/cando-2.jpg',
@@ -236,7 +286,6 @@ Owned and delivered the frontend experience for both the public-facing web appli
             'Chart.js',
         ],
         thumbnail: '/projects/thumbnail/plotweaver.jpg',
-        longThumbnail: '/projects/long/plotweaver.jpg',
         images: [
             '/projects/images/plotweaver-1.jpg',
             '/projects/images/plotweaver-2.jpg',
@@ -270,7 +319,6 @@ Led the design and implementation of the frontend experience for an AI-driven sc
             'Tailwind CSS',
         ],
         thumbnail: '/projects/thumbnail/datacollection.jpg',
-        longThumbnail: '/projects/long/datacollection.jpg',
         images: [
             '/projects/images/datacollection-1.jpg',
             '/projects/images/datacollection-2.jpg',
@@ -305,7 +353,6 @@ Built and maintained the frontend workflows for a role-based audio translation a
             'Stripe',
         ],
         thumbnail: '/projects/thumbnail/vuhosi.jpg',
-        longThumbnail: '/projects/long/vuhosi.jpg',
         images: [
             '/projects/images/vuhosi-1.jpg',
             '/projects/images/vuhosi-2.jpg',
@@ -347,7 +394,7 @@ Built the frontend experience and the AI-driven workflows for an AI platform ser
 `,
     },
     {
-        title: 'Storytelling',
+        title: 'Lagos Youth Storytelling',
         slug: 'storytelling',
         techStack: [
             'Next.js',
@@ -358,22 +405,33 @@ Built the frontend experience and the AI-driven workflows for an AI platform ser
             'Chart.js',
         ],
         thumbnail: '/projects/thumbnail/storytelling.jpg',
-        longThumbnail: '/projects/long/storytelling.jpg',
         images: [
             '/projects/images/storytelling-1.jpg',
             '/projects/images/storytelling-2.jpg',
             '/projects/images/storytelling-3.jpg',
             '/projects/images/storytelling-4.jpg',
         ],
-        liveUrl: 'https://demo.propertypro.siphertech.com/',
-        year: 2023,
-        description:
-            'PropertyPro is a real estate management platform offering users a seamless experience to explore, manage, and view property listings. The application emphasizes accessibility and responsive design, ensuring a smooth interface across devices.',
-        role: `As the frontend developer, I:<br/>
-        - Built the frontend using React, Redux, RTK Query, Framer Motion, and Tailwind CSS.<br/>
-        - Integrated dynamic state management for efficient handling of property data.<br/>
-        - Implemented multi-language support with React i18n to cater to diverse audiences.<br/>
-        - Enhanced user interaction with animations and transitions using Framer Motion.`,
+        liveUrl: 'https://www.lagosstorytelling.ng/',
+        year: 2025,
+        description: `The official platform for the Lagos Youth Storytelling Challenge 2025 — a statewide writing competition run by the Lagos State Films and Videos Censorship Board with Plotweaver as technology partner, open to over 200,000 junior and senior secondary school students across 20 local government areas. <br/><br/>
+The platform covers the whole competition lifecycle: a public site with categories, prizes, rules, and timeline; a student submission portal where participants register, write or upload their story, and accept the submission agreement; a parent portal for guardian consent; and an organiser dashboard for tracking participation, monitoring AI-assisted story evaluations, and reviewing detailed per-story reports. <br/><br/>
+Key Features:<br/>
+<ul>
+  <li>📝 Story Submission Portal: Register with school, class, and track details, then write in-app or upload a story with live word counts and writing tips</li>
+  <li>🤖 AI-Assisted Evaluation: Plotweaver Story Check scores every entry against the competition criteria — cultural authenticity, creative innovation, narrative structure, educational value, and more — with compliance and safety screening</li>
+  <li>📊 Organiser Dashboard: Live KPIs for participants, schools, submissions, and evaluations, with daily, weekly, and district-level charts</li>
+  <li>📋 Detailed Evaluation Reports: Per-story score breakdowns, strengths, areas for improvement, and exportable reports for judges</li>
+  <li>👨‍👩‍👧 Parent Portal: Guardian consent and oversight in line with Nigeria's data protection requirements</li>
+  <li>📱 Responsive Design: Works for students submitting on mobile as well as organisers reviewing on desktop</li>
+</ul>`,
+        role: `Frontend Engineer <br/>
+Built the frontend of the competition platform with the Plotweaver team.
+<ul>
+  <li>🎨 Implemented the public landing site, student submission portal, parent portal, and organiser dashboard with Next.js, Tailwind CSS, and shadcn/ui</li>
+  <li>📈 Built the analytics views with Chart.js, including submission trends, district performance, and evaluation summaries</li>
+  <li>🔄 Managed client state with Zustand and server data with TanStack Query for fast, reliable data loading across the portals</li>
+  <li>✅ Implemented the story submission flow with file upload, validation, word limits, and the submission agreement</li>
+</ul>`,
     },
     {
         title: 'HomeBridge',
@@ -388,7 +446,6 @@ Built the frontend experience and the AI-driven workflows for an AI platform ser
             'Tanstack Query',
         ],
         thumbnail: '/projects/thumbnail/homebridge.jpg',
-        longThumbnail: '/projects/long/homebridge.jpg',
         images: [
             '/projects/images/homebridge-1.jpg',
             '/projects/images/homebridge-2.jpg',
@@ -420,18 +477,31 @@ Worked across the stack, collaborating on the backend alongside building the fro
         slug: 'gtv-reviewer',
         techStack: ['Next.js', 'Shadcn', 'Websockets', 'Tailwind CSS'],
         thumbnail: '/projects/thumbnail/gtv.jpg',
-        longThumbnail: '/projects/long/gtv.jpg',
         images: [
-            '/projects/images/consulting-finance-1.png',
-            '/projects/images/consulting-finance-2.png',
-            '/projects/images/consulting-finance-3.png',
+            '/projects/images/gtv-1.jpg',
+            '/projects/images/gtv-2.jpg',
+            '/projects/images/gtv-3.jpg',
         ],
-        sourceCode: 'https://github.com/Tajmirul/crenotive',
-        liveUrl: 'https://crenotive.netlify.app/',
-        year: 2023,
-        description:
-            'I developed Crenotive, a portfolio website using Html, SASS, and jQuery to showcase services and expertise. The design focuses on responsive user experience and effective presentation of professional achievements.',
-        role: ``,
+        year: 2025,
+        description: `GTV Reviewer is an AI-powered platform that helps applicants prepare a winning UK Global Talent Visa application. Users upload their personal statement, CV, reference letters, and evidence, and purpose-built AI agents review them against Tech Nation's official criteria — returning precise insights, expert-style feedback, and actionable recommendations in minutes. <br/><br/>
+Alongside the core review, the platform offers a Pro tier and one-off prevention services such as a GTV eligibility scan, a reference letter risk review, and a mandatory-criteria deep dive, so applicants can catch problems before they submit. <br/><br/>
+Key Features:<br/>
+<ul>
+  <li>📄 Smart Document Analysis: Upload a personal statement and evidence for AI analysis against Tech Nation's criteria</li>
+  <li>🗂️ Evidence Classification: Achievements are automatically categorised by innovation, impact, and recognition to surface gaps</li>
+  <li>👥 Multiple Reviewer Perspectives: Feedback from different reviewer personas — technical experts, business leaders, and academics</li>
+  <li>📊 Detailed Reports: Overall score, evidence quality grade, radar-style gap analysis, and downloadable recommendations</li>
+  <li>⚡ Real-Time Progress: Live status updates while a review runs, powered by WebSockets</li>
+  <li>💳 Plans &amp; Services: Free and Pro tiers, one-off prevention services, and discounted bundles</li>
+</ul>`,
+        role: `Frontend Engineer <br/>
+Built the web application for an AI-driven visa application review service.
+<ul>
+  <li>🎨 Implemented the marketing site, review workflow, and report views with Next.js, Tailwind CSS, and shadcn/ui</li>
+  <li>⚡ Integrated WebSockets so applicants see review progress and results update in real time</li>
+  <li>📤 Built the document upload and review submission flows with clear validation and status feedback</li>
+  <li>💳 Implemented the pricing, prevention services, and bundle pages</li>
+</ul>`,
     },
 
     {
@@ -439,19 +509,30 @@ Worked across the stack, collaborating on the backend alongside building the fro
         slug: 'tasteclan',
         techStack: ['React.js', 'Zustand', 'Tanstack Query', 'Tailwind CSS'],
         thumbnail: '/projects/thumbnail/tasteclan.jpg',
-        longThumbnail: '/projects/long/tasteclan.jpg',
         images: [
-            '/projects/images/devLinks-1.png',
-            '/projects/images/devLinks-2.png',
-            '/projects/images/devLinks-3.png',
+            '/projects/images/tasteclan-1.jpg',
+            '/projects/images/tasteclan-2.jpg',
+            '/projects/images/tasteclan-3.jpg',
         ],
-        sourceCode: 'https://github.com/Tajmirul/devsLink',
-        liveUrl: 'https://devlinks-demo.vercel.app/auth/signin',
-        year: 2023,
-        description: `One of the most challenging projects in Frontend Mentor.<br/><br/>
-
-            I developed a LinkSharing App as part of the Frontend Mentor challenge, utilizing React, Redux, and Tailwind CSS to create a responsive and feature-rich platform. The app allows users to share, save, and explore links, with a focus on intuitive design and smooth navigation. Advanced state management ensures efficient data handling for user interactions.`,
-        role: ``,
+        year: 2022,
+        description: `TasteClan is a food ordering and delivery platform built for university students and busy professionals in Akure, Ondo State, Nigeria. Customers browse top local restaurants — from breakfast cafés to amala, suya, and shawarma spots — order food or foodstuff, and get it delivered within minutes during opening hours. <br/><br/>
+Beyond ordering, TasteClan built a community around food: members join "the Clan" to share health goals, discover new recipes, and talk about what they eat, while restaurant owners, home cooks, and student vendors can partner with the platform to reach more customers. <br/><br/>
+Key Features:<br/>
+<ul>
+  <li>🍽️ Restaurant Discovery: Browse top-rated local restaurants and their menus</li>
+  <li>🛵 Fast Ordering: Place orders for meals or foodstuff with quick delivery around Akure</li>
+  <li>👥 Food Community: Join the Clan to share goals, recipes, and food conversations</li>
+  <li>🤝 Vendor Partnerships: Onboarding for restaurants and home cooks who want to sell through the platform</li>
+  <li>📬 Newsletter &amp; Contact: Subscription and contact forms for updates and support</li>
+  <li>📱 Responsive Design: Optimised for students ordering on mobile</li>
+</ul>`,
+        role: `Frontend Developer (Intern) <br/>
+Built the customer-facing web app during my internship at TasteClan.
+<ul>
+  <li>🎨 Implemented the landing page, restaurant listings, and ordering UI with React and Tailwind CSS from the design handoff</li>
+  <li>🔄 Managed order and session state with Zustand and fetched restaurant and order data with TanStack Query</li>
+  <li>📝 Built the community sign-up, vendor partnership, newsletter, and contact forms</li>
+</ul>`,
     },
 ];
 

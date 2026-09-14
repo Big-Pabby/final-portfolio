@@ -13,18 +13,14 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const ProjectList = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const projectListRef = useRef<HTMLDivElement>(null);
     const imageContainer = useRef<HTMLDivElement>(null);
-    const imageRef = useRef<HTMLImageElement>(null);
     const [selectedProject, setSelectedProject] = useState<string | null>(
         PROJECTS[0].slug,
     );
 
-    // update imageRef.current href based on the cursor hover position
-    // also update image position
+    // Follow the cursor with the floating preview image (desktop only).
     useGSAP(
         (context, contextSafe) => {
-            // show image on hover
             if (window.innerWidth < 768) {
                 setSelectedProject(null);
                 return;
@@ -106,39 +102,37 @@ const ProjectList = () => {
     return (
         <section className="pb-section" id="selected-projects">
             <div className="container">
-                <SectionTitle title="/ Selected Projects" />
+                <SectionTitle title="Selected projects" number="03" />
 
                 <div className="group/projects relative" ref={containerRef}>
                     {selectedProject !== null && (
                         <div
-                            className="max-md:hidden absolute right-0 top-0 z-[1] pointer-events-none w-[200px] xl:w-[350px] aspect-[3/4] overflow-hidden opacity-0"
+                            className="max-md:hidden absolute right-0 top-0 z-[1] pointer-events-none w-[200px] xl:w-[350px] aspect-[3/4] overflow-hidden rounded-md border-[3px] border-paper bg-card shadow-comic-primary opacity-0"
                             ref={imageContainer}
+                            style={{ rotate: '2deg' }}
+                            aria-hidden="true"
                         >
                             {PROJECTS.map((project) => (
                                 <Image
                                     src={project.thumbnail}
-                                    alt="Project"
-                                    width="400"
-                                    height="500"
+                                    alt=""
+                                    fill
+                                    sizes="350px"
                                     className={cn(
-                                        'absolute inset-0 transition-all duration-500 w-full h-full object-top object-cover',
+                                        'object-cover object-top transition-opacity duration-500',
                                         {
                                             'opacity-0':
                                                 project.slug !==
                                                 selectedProject,
                                         },
                                     )}
-                                    ref={imageRef}
                                     key={project.slug}
                                 />
                             ))}
                         </div>
                     )}
 
-                    <div
-                        className="flex flex-col max-md:gap-10"
-                        ref={projectListRef}
-                    >
+                    <div className="flex flex-col max-md:gap-10">
                         {PROJECTS.map((project, index) => (
                             <Project
                                 index={index}

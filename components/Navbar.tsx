@@ -1,48 +1,125 @@
 'use client';
-import { cn } from '@/lib/utils';
-import { useState } from 'react';
-import { MoveUpRight, Download } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLenis } from 'lenis/react';
+import { Download, MoveUpRight } from 'lucide-react';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { cn } from '@/lib/utils';
+import TransitionLink from './TransitionLink';
 
 const COLORS = [
     'bg-yellow-500 text-black',
     'bg-blue-500 text-white',
     'bg-teal-500 text-black',
     'bg-indigo-500 text-white',
+    'bg-pink-500 text-white',
+    'bg-primary text-black',
 ];
 
 const MENU_LINKS = [
-    {
-        name: 'Home',
-        url: '/',
-    },
-    {
-        name: 'About Me',
-        url: '/#about-me',
-    },
-    {
-        name: 'Experience',
-        url: '/#my-experience',
-    },
-    {
-        name: 'Projects',
-        url: '/#selected-projects',
-    },
+    { name: 'Home', url: '/', id: '' },
+    { name: 'About Me', url: '/#about-me', id: 'about-me' },
+    { name: 'My Stack', url: '/#my-stack', id: 'my-stack' },
+    { name: 'Experience', url: '/#my-experience', id: 'my-experience' },
+    { name: 'Projects', url: '/#selected-projects', id: 'selected-projects' },
+    { name: 'Contact', url: '/#contact', id: 'contact' },
 ];
+
+const BRAND_CLASSES =
+    'font-display text-2xl leading-none tracking-wide transition-colors hover:text-primary';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const router = useRouter();
+    const pathname = usePathname();
+    const lenis = useLenis();
+    const panelRef = useRef<HTMLDivElement>(null);
+    const toggleRef = useRef<HTMLButtonElement>(null);
+    const isHome = pathname === '/';
+
+    const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+
+    // Lock page scroll while the menu is open and close it with Escape.
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        lenis?.stop();
+        panelRef.current?.focus({ preventScroll: true });
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeMenu();
+        };
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+            lenis?.start();
+        };
+    }, [isMenuOpen, lenis, closeMenu]);
+
+    const scrollToSection = useCallback(
+        (id: string) => {
+            if (!id) {
+                lenis?.scrollTo(0, { force: true });
+                return;
+            }
+
+            const target = document.getElementById(id);
+            if (target) lenis?.scrollTo(target, { offset: -24, force: true });
+        },
+        [lenis],
+    );
+
+    const handleMenuLink = (link: (typeof MENU_LINKS)[number]) => {
+        closeMenu();
+
+        if (isHome) {
+            // Give the menu a moment to release the scroll lock first.
+            window.setTimeout(() => scrollToSection(link.id), 80);
+            return;
+        }
+
+        router.push(link.url);
+    };
 
     return (
         <>
-            <div className="sticky top-0 z-[4]">
-                <button
+            <header className="sticky top-0 z-[4]">
+                <div
                     className={cn(
-                        'group size-12 absolute top-5 right-5 md:right-10 z-[2]',
+                        // Only shown where the layout has a free gutter, so it never overlaps section titles.
+                        'absolute top-5 left-4 2xl:left-10 z-[2] hidden xl:flex h-12 items-center transition-opacity duration-300',
+                        { 'opacity-0 pointer-events-none': isMenuOpen },
                     )}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    {isHome ? (
+                        <button
+                            type="button"
+                            onClick={() => scrollToSection('')}
+                            aria-label="Back to top"
+                            className={BRAND_CLASSES}
+                        >
+                            VA<span className="text-primary">.</span>
+                        </button>
+                    ) : (
+                        <TransitionLink
+                            href="/"
+                            aria-label="Go to homepage"
+                            className={BRAND_CLASSES}
+                        >
+                            VA<span className="text-primary">.</span>
+                        </TransitionLink>
+                    )}
+                </div>
+
+                <button
+                    ref={toggleRef}
+                    type="button"
+                    className="group size-12 absolute top-5 right-5 md:right-10 z-[2]"
+                    onClick={() => setIsMenuOpen((open) => !open)}
+                    aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isMenuOpen}
+                    aria-controls="site-menu"
                 >
                     <span
                         className={cn(
@@ -63,7 +140,7 @@ const Navbar = () => {
                         )}
                     ></span>
                 </button>
-            </div>
+            </header>
 
             <div
                 className={cn(
@@ -72,14 +149,23 @@ const Navbar = () => {
                         'opacity-0 invisible pointer-events-none': !isMenuOpen,
                     },
                 )}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
+                aria-hidden="true"
             ></div>
 
             <div
+                id="site-menu"
+                ref={panelRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Site menu"
+                aria-hidden={!isMenuOpen}
+                tabIndex={-1}
+                data-lenis-prevent
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden gap-y-14',
+                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-[transform,visibility] duration-700 z-[3] overflow-y-auto overflow-x-hidden gap-y-14 outline-none',
                     'flex flex-col lg:justify-center py-10',
-                    { 'translate-x-0': isMenuOpen },
+                    isMenuOpen ? 'translate-x-0 visible' : 'invisible',
                 )}
             >
                 <div
@@ -94,7 +180,7 @@ const Navbar = () => {
                 <div className="grow flex md:items-center w-full max-w-[300px] mx-8 sm:mx-auto">
                     <div className="flex gap-10 lg:justify-between max-lg:flex-col w-full">
                         <div className="max-lg:order-2">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
+                            <p className="mb-5 font-display text-lg tracking-widest text-primary md:mb-8">
                                 SOCIAL
                             </p>
                             <ul className="space-y-3">
@@ -103,8 +189,8 @@ const Navbar = () => {
                                         <a
                                             href={link.url}
                                             target="_blank"
-                                            rel="noreferrer"
-                                            className="text-lg capitalize hover:underline"
+                                            rel="noopener noreferrer"
+                                            className="font-display text-2xl capitalize tracking-wide transition-colors hover:text-primary"
                                         >
                                             {link.name}
                                         </a>
@@ -112,24 +198,22 @@ const Navbar = () => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
+                        <nav aria-label="Main">
+                            <p className="mb-5 font-display text-lg tracking-widest text-primary md:mb-8">
                                 MENU
                             </p>
                             <ul className="space-y-3">
                                 {MENU_LINKS.map((link, idx) => (
                                     <li key={link.name}>
                                         <button
-                                            onClick={() => {
-                                                router.push(link.url);
-                                                setIsMenuOpen(false);
-                                            }}
-                                            className="group text-xl flex items-center gap-3"
+                                            type="button"
+                                            onClick={() => handleMenuLink(link)}
+                                            className="group flex items-center gap-3 font-display text-3xl tracking-wide"
                                         >
                                             <span
                                                 className={cn(
                                                     'size-3.5 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-[200%] transition-all',
-                                                    COLORS[idx],
+                                                    COLORS[idx % COLORS.length],
                                                 )}
                                             >
                                                 <MoveUpRight
@@ -142,21 +226,24 @@ const Navbar = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </nav>
                     </div>
                 </div>
 
                 <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <p className="text-muted-foreground mb-4">GET IN TOUCH</p>
-                    <a className="block" href={`mailto:${GENERAL_INFO.email}`}>
+                    <p className="mb-4 font-display text-lg tracking-widest text-primary">GET IN TOUCH</p>
+                    <a
+                        className="block break-all hover:text-primary transition-colors"
+                        href={`mailto:${GENERAL_INFO.email}`}
+                    >
                         {GENERAL_INFO.email}
                     </a>
                     <a
                         href={GENERAL_INFO.resume}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         download
-                        className="mt-4 inline-flex items-center gap-2 hover:text-primary"
+                        className="mt-4 inline-flex items-center gap-2 hover:text-primary transition-colors"
                     >
                         <Download size={18} />
                         Download CV

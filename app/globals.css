@@ -4,45 +4,97 @@
 
 @layer base {
     :root {
-        --background: #0a192f;
-        --background-light: 0 0% 19%;
-        --foreground: 0 0% 87%;
+        /* DC-inspired palette: Gotham navy, Bat-signal yellow, hero blue, red ink accents.
+           Stored as HSL channels so Tailwind opacity modifiers work. */
+        --background: 224 40% 7%;
+        --background-light: 222 40% 13%;
+        --foreground: 240 5% 96%;
 
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
+        --card: 222 40% 13%;
+        --card-foreground: 240 5% 96%;
+        --popover: 222 40% 13%;
+        --popover-foreground: 240 5% 96%;
 
-        --primary: #50c878;
-        --primary-foreground: 0 0% 13%;
-        --secondary: 193 100% 47%;
-        --secondary-foreground: 0 0% 13%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 71%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
+        --primary: 50 100% 52%;
+        --primary-foreground: 0 0% 4%;
+        --secondary: 211 100% 55%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 222 30% 18%;
+        --muted-foreground: 223 13% 70%;
+        --accent: 355 78% 56%;
+        --accent-foreground: 0 0% 100%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 24%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
+        --border: 222 25% 30%;
+        --input: 222 30% 18%;
+        --ring: 50 100% 52%;
+        --ink: 0 0% 4%;
+        --paper: 0 0% 98%;
         --chart-1: 220 70% 50%;
         --chart-2: 160 60% 45%;
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
+        --radius: 0.375rem;
     }
 }
 
 @layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+        color-scheme: dark;
+    }
     ::-webkit-scrollbar {
         display: none;
     }
     * {
-        @apply border-border !cursor-none;
+        @apply border-border;
     }
     body {
         @apply bg-background text-foreground font-roboto-flex;
+    }
+
+    /* Halftone dots plus a Gotham spotlight, painted behind everything. */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+            radial-gradient(ellipse 70% 55% at 90% -5%, hsl(var(--secondary) / 0.28), transparent 70%),
+            radial-gradient(ellipse 55% 45% at -5% 105%, hsl(var(--primary) / 0.12), transparent 70%),
+            radial-gradient(circle, hsl(var(--paper) / 0.07) 1px, transparent 1.4px);
+        background-size: 100% 100%, 100% 100%, 9px 9px;
+    }
+
+    ::selection {
+        background-color: hsl(var(--primary));
+        color: hsl(var(--ink));
+    }
+    :focus-visible {
+        outline: 3px solid hsl(var(--primary));
+        outline-offset: 3px;
+    }
+
+    /* The custom cursor replaces the native one only on devices that have a real pointer. */
+    @media (hover: hover) and (pointer: fine) {
+        *,
+        *::before,
+        *::after {
+            cursor: none !important;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
     }
 }
 
@@ -52,6 +104,77 @@
     }
 
     .markdown-text ul {
-        @apply pl-5 mt-2 list-disc;
+        @apply pl-5 mt-2 list-disc marker:text-primary;
+    }
+    .markdown-text li + li {
+        @apply mt-1.5;
+    }
+
+    /* Comic display text: light fill, ink outline, hard coloured shadow. */
+    .comic-title {
+        @apply font-display tracking-wide;
+        -webkit-text-stroke: 1.5px hsl(var(--ink));
+        paint-order: stroke fill;
+        text-shadow: 0.06em 0.06em 0 hsl(var(--primary));
+    }
+    .comic-title-blue {
+        text-shadow: 0.06em 0.06em 0 hsl(var(--secondary));
+    }
+    .comic-title-red {
+        text-shadow: 0.06em 0.06em 0 hsl(var(--accent));
+    }
+
+    /* A comic panel: thick paper border with a hard yellow drop. */
+    .comic-panel {
+        @apply relative rounded-md border-[3px] border-paper bg-card shadow-comic-primary;
+    }
+
+    /* Narration caption box. */
+    .comic-caption {
+        @apply inline-flex items-center gap-2 border-[3px] border-ink bg-primary px-3 py-1.5 font-display text-xl uppercase leading-none tracking-wider text-ink shadow-comic;
+    }
+
+    /* Speech bubble with a tail at the bottom-left. */
+    .speech-bubble {
+        @apply relative inline-flex items-center gap-2.5 rounded-xl border-[3px] border-ink bg-paper px-4 py-2 text-sm font-semibold text-ink shadow-comic-primary;
+    }
+    .speech-bubble::before {
+        content: '';
+        position: absolute;
+        left: 22px;
+        bottom: -16px;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 16px solid hsl(var(--ink));
+    }
+    .speech-bubble::after {
+        content: '';
+        position: absolute;
+        left: 25px;
+        bottom: -9px;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-top: 11px solid hsl(var(--paper));
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-sm border-2 border-paper/80 bg-card px-3 py-1.5 text-sm leading-none text-foreground transition-[border-color,box-shadow,color] duration-150;
+    }
+
+    .icon-btn {
+        @apply inline-flex size-10 items-center justify-center rounded-sm border-[3px] border-paper bg-card text-foreground shadow-comic-sm transition-[box-shadow,border-color,color] duration-150 hover:border-primary hover:text-primary hover:shadow-comic-primary-sm;
+    }
+
+    /* `translate` is separate from `transform`, so GSAP-driven transforms are not overridden. */
+    .icon-btn:hover,
+    .comic-btn:hover {
+        translate: -2px -2px;
+    }
+    .comic-btn:active {
+        translate: 2px 2px;
+    }
+
+    .skip-link {
+        @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:font-medium focus:text-primary-foreground;
     }
 }

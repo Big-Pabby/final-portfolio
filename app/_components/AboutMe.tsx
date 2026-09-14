@@ -54,19 +54,31 @@ const AboutMe = () => {
     return (
         <section className="pb-section" id="about-me">
             <div className="container" ref={container}>
-                <p className="pb-3 border-b text-muted-foreground slide-up-and-fade">
-                    / about me
-                </p>
+                <div className="slide-up-and-fade mb-12 flex items-center gap-4">
+                    <span
+                        className="comic-caption"
+                        style={{ rotate: '-1.5deg' }}
+                    >
+                        About me
+                    </span>
+                    <span
+                        className="h-[3px] grow bg-paper/15"
+                        aria-hidden="true"
+                    ></span>
+                </div>
 
-                <div className="grid md:grid-cols-12 mt-9">
+                <div className="grid md:grid-cols-12">
                     <div className="md:col-span-5">
-                        <p className="text-5xl slide-up-and-fade">
+                        <h2 className="comic-title slide-up-and-fade text-5xl leading-none sm:text-6xl">
                             Hi, I&apos;m Victor.
-                        </p>
+                        </h2>
                     </div>
                     <div className="md:col-span-7">
-                        <div className="text-lg text-muted-foreground max-w-[450px]">
-                            <p className="slide-up-and-fade">
+                        <div
+                            className="comic-panel slide-up-and-fade max-w-[540px] p-6 text-lg text-foreground/90 md:p-8"
+                            style={{ rotate: '0.8deg' }}
+                        >
+                            <p>
                                 I’m a software engineer who loves building
                                 impactful, user-focused products that help change
                                 lives. I work across the stack — from polished
@@ -77,7 +89,7 @@ const AboutMe = () => {
                                 performance, clean architecture, and scalable
                                 systems.
                             </p>
-                            <p className="mt-3 slide-up-and-fade">
+                            <p className="mt-4">
                                 Beyond code, I’m deeply inspired by storytelling
                                 and creativity. When I’m not building products,
                                 you’ll probably find me reading manga and
@@ -86,11 +98,6 @@ const AboutMe = () => {
                                 creativity, and fast decision-making—whether
                                 it’s in code, stories, or games.
                             </p>
-                            {/* <p className="mt-3 slide-up-and-fade">
-                                I’m always curious, always learning, and driven
-                                by the idea that great software can be both
-                                technically solid and meaningful to real people.
-                            </p> */}
                         </div>
                     </div>
                 </div>

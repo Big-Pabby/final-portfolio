@@ -60,77 +60,38 @@ const Skills = () => {
     return (
         <section id="my-stack" ref={containerRef}>
             <div className="container">
-                <SectionTitle title="/ my stack" />
+                <SectionTitle title="My stack" number="01" />
 
                 <div className="space-y-20">
                     {Object.entries(MY_STACK).map(([key, value]) => (
                         <div className="grid sm:grid-cols-12" key={key}>
                             <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
+                                <h3 className="slide-up comic-title text-5xl uppercase leading-none">
                                     {key}
-                                </p>
+                                </h3>
                             </div>
 
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
+                            <ul className="sm:col-span-7 flex flex-wrap gap-4">
                                 {value.map((item) => (
-                                    <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
+                                    <li
+                                        className="slide-up flex items-center gap-3 rounded-sm border-2 border-paper/80 bg-card py-2 pl-2 pr-4 transition-[border-color,box-shadow] duration-150 hover:border-primary hover:shadow-comic-primary-sm"
                                         key={item.name}
                                     >
-                                        <div>
+                                        <span className="flex size-10 shrink-0 items-center justify-center rounded-sm bg-paper">
                                             <Image
                                                 src={item.icon}
-                                                alt={item.name}
-                                                width="40"
-                                                height="40"
-                                                className="max-h-10"
+                                                alt=""
+                                                width={24}
+                                                height={24}
+                                                className="size-6 object-contain"
                                             />
-                                        </div>
-                                        <span className="text-2xl capitalize">
+                                        </span>
+                                        <span className="font-display text-xl tracking-wide">
                                             {item.name}
                                         </span>
-                                    </div>
+                                    </li>
                                 ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-
-    return (
-        <section id="my-stack" ref={containerRef}>
-            <div className="container">
-                <SectionTitle title="My Stack" />
-
-                <div className="space-y-20">
-                    {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12" key={key}>
-                            <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
-                                    {key}
-                                </p>
-                            </div>
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
-                                {value.map((item) => (
-                                    <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
-                                        key={item.name}
-                                    >
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.name}
-                                            width="40"
-                                            height="40"
-                                            className="h-10"
-                                        />
-                                        <span className="text-2xl capitalize">
-                                            {item.name}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
+                            </ul>
                         </div>
                     ))}
                 </div>
