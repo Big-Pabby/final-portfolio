@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Fragment } from 'react';
 import Editor from '@/components/editor/Editor';
 import { H1, L, Para, Quote } from '@/components/editor/tokens';
 import { TESTIMONIALS } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'Testimonials',
-    description: 'What the people Victor Adekunle has worked with say.',
-    alternates: { canonical: '/testimonials' },
-};
+    description:
+        'What the people Victor Adekunle has worked with say.',
+    path: '/testimonials',
+});
 
 /** testimonials.md: only exists once TESTIMONIALS in lib/data.ts has quotes. */
 export default function TestimonialsPage() {

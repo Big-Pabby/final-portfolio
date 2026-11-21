@@ -1,16 +1,17 @@
 import { Download, Play } from 'lucide-react';
-import type { Metadata } from 'next';
 import CopyEmailButton from '@/components/editor/CopyEmailButton';
 import Editor from '@/components/editor/Editor';
 import { C, F, K, L, P, S } from '@/components/editor/tokens';
 import { MAILTO, SOCIAL_LABELS } from '@/components/ide/commands';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'Contact',
-    description: `Get in touch with ${GENERAL_INFO.name}: email, GitHub, LinkedIn and CV.`,
-    alternates: { canonical: '/contact' },
-};
+    description:
+        'Get in touch with Victor Adekunle: email, GitHub, LinkedIn, X and a CV to download.',
+    path: '/contact',
+});
 
 /** contact.sh: every way to reach me, as a script you can "run". */
 export default function ContactPage() {

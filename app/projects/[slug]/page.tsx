@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import Editor from '@/components/editor/Editor';
 import { Bullet, H1, H2, H3, L, P, Para, S } from '@/components/editor/tokens';
 import { PROJECTS } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 import {
     getRoleTitle,
     htmlToBlocks,
@@ -31,25 +32,14 @@ export const generateMetadata = async ({
         return { title: 'Project not found' };
     }
 
-    const description = truncate(stripHtml(project.description), 160);
-    const url = `/projects/${project.slug}`;
-
-    return {
-        title: `${project.title} - ${project.techStack.slice(0, 3).join(', ')}`,
-        description,
-        alternates: { canonical: url },
-        openGraph: {
-            type: 'article',
-            url,
-            title: project.title,
-            description,
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: project.title,
-            description,
-        },
-    };
+    return pageMetadata({
+        title: project.title,
+        // The tab title also names the main tech, which helps in search results.
+        tabTitle: `${project.title} - ${project.techStack.slice(0, 3).join(', ')}`,
+        description: truncate(stripHtml(project.description), 160),
+        path: `/projects/${project.slug}`,
+        type: 'article',
+    });
 };
 
 /** A front-matter line: `key: value`, in the file's monospace style. */

@@ -1,16 +1,16 @@
-import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 import Editor from '@/components/editor/Editor';
 import { C, F, K, L, N, P, S } from '@/components/editor/tokens';
 import LocalTime from '@/components/LocalTime';
 import { GENERAL_INFO } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'About me',
     description:
         'Victor Adekunle is a software engineer working across the stack, from React, Next.js, Vue and React Native to Node.js, Express and PostgreSQL.',
-    alternates: { canonical: '/about' },
-};
+    path: '/about',
+});
 
 const list = (items: string[]): ReactNode =>
     items.map((item, index) => (

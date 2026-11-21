@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
 import { Fragment } from 'react';
 import Editor from '@/components/editor/Editor';
 import { C, L, N, P, S } from '@/components/editor/tokens';
 import { MY_EXPERIENCE } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'Experience',
-    description: 'The teams Victor Adekunle has built with.',
-    alternates: { canonical: '/experience' },
-};
+    description:
+        'Where Victor Adekunle has worked as a software engineer: HomeBridge, Plotweaver, Zacrac, Vuhosi and TasteClan.',
+    path: '/experience',
+});
 
 /** experience.yml: the teams I've built with, newest first. */
 export default function ExperiencePage() {

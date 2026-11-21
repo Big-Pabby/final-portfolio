@@ -1,16 +1,16 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Editor from '@/components/editor/Editor';
 import { C, F, K, L, N, P, S } from '@/components/editor/tokens';
 import ProjectCanvas from '@/components/ProjectCanvas';
 import { PROJECTS } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'Selected work',
     description:
         'Products Victor Adekunle has built with teams and on his own, across web, mobile and AI.',
-    alternates: { canonical: '/projects' },
-};
+    path: '/projects',
+});
 
 const FEATURED = PROJECTS.filter((project) => project.featured);
 const MORE = PROJECTS.filter((project) => !project.featured);

@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Fragment } from 'react';
 import Editor from '@/components/editor/Editor';
 import { L, P, S } from '@/components/editor/tokens';
 import { MY_STACK } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'My stack',
-    description: 'The tools Victor Adekunle reaches for, front to back.',
-    alternates: { canonical: '/stack' },
-};
+    description:
+        'The tools Victor Adekunle reaches for, front to back: React, Next.js, Vue, Nuxt, TypeScript, Node.js, Express, PostgreSQL and more.',
+    path: '/stack',
+});
 
 const GROUPS = Object.entries(MY_STACK);
 

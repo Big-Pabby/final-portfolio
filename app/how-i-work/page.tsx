@@ -1,16 +1,16 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import Editor from '@/components/editor/Editor';
 import { Bullet, H1, H2, L, Para } from '@/components/editor/tokens';
 import { PROJECTS, WORK_HABITS } from '@/lib/data';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
     title: 'How I work',
     description:
         'Three habits Victor Adekunle brings to every project, and the work that shows them.',
-    alternates: { canonical: '/how-i-work' },
-};
+    path: '/how-i-work',
+});
 
 /** how-i-work.md: three habits, each backed by projects that show it. */
 export default function HowIWorkPage() {

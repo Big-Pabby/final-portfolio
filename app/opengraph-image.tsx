@@ -1,15 +1,44 @@
 import { ImageResponse } from 'next/og';
-import { SITE_NAME, SITE_URL } from '@/lib/site';
+import { GENERAL_INFO } from '@/lib/data';
+import { SHARE_IMAGE, SITE_NAME, SITE_URL } from '@/lib/site';
 
-export const alt = `${SITE_NAME} - Software Engineer`;
-export const size = { width: 1200, height: 630 };
+export const alt = SHARE_IMAGE.alt;
+export const size = { width: SHARE_IMAGE.width, height: SHARE_IMAGE.height };
 export const contentType = 'image/png';
 
+// The site's night theme (see app/globals.css).
+const BG = '#080d17';
+const PANEL = '#0e1420';
+const BORDER = '#202b3c';
+const TEXT = '#e7edf5';
+const MUTED = '#8a9bb8';
 const CYAN = '#1fd5f9';
-const RED = '#e5394a';
-const INK = '#0a0a0a';
-const PAPER = '#fafafa';
+const KEYWORD = '#c792ea';
+const STRING = '#c3e88d';
+const FUNC = '#82aaff';
 
+const STACK = ['React', 'Next.js', 'Vue', 'React Native', 'Node.js', 'PostgreSQL'];
+const TABS = ['README.md', 'about.ts', 'stack.json', 'contact.sh'];
+
+const Line = ({ n, children }: { n: number; children?: React.ReactNode }) => (
+    <div style={{ display: 'flex', alignItems: 'center', minHeight: 44 }}>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                width: 70,
+                paddingRight: 28,
+                fontSize: 20,
+                color: '#4a5870',
+            }}
+        >
+            {n}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
+    </div>
+);
+
+/** The share image: the site's README.md tab, as it looks in the editor. */
 export default function OpenGraphImage() {
     return new ImageResponse(
         (
@@ -19,83 +48,149 @@ export default function OpenGraphImage() {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    padding: 64,
-                    background:
-                        'radial-gradient(circle at 90% 0%, rgba(31,213,249,0.22) 0%, rgba(8,13,23,1) 55%)',
-                    backgroundColor: '#080d17',
-                    color: PAPER,
+                    backgroundColor: BG,
+                    color: TEXT,
                     fontFamily: 'sans-serif',
                 }}
             >
+                {/* Title bar */}
                 <div
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 16,
+                        justifyContent: 'space-between',
+                        height: 60,
+                        padding: '0 28px',
+                        backgroundColor: PANEL,
+                        borderBottom: `2px solid ${BORDER}`,
                     }}
                 >
-                    <div
-                        style={{
-                            display: 'flex',
-                            padding: '10px 18px',
-                            background: CYAN,
-                            color: INK,
-                            border: `4px solid ${INK}`,
-                            boxShadow: `6px 6px 0 ${PAPER}`,
-                            fontSize: 26,
-                            fontWeight: 800,
-                            letterSpacing: 2,
-                            textTransform: 'uppercase',
-                        }}
-                    >
-                        Portfolio
+                    <div style={{ display: 'flex', fontSize: 26, fontWeight: 800 }}>
+                        VA<span style={{ color: CYAN }}>.</span>
                     </div>
-                    <div style={{ fontSize: 26, color: '#a3a9b8' }}>
+                    <div style={{ display: 'flex', fontSize: 22, color: MUTED }}>
                         {SITE_URL.replace(/^https?:\/\//, '')}
                     </div>
                 </div>
 
+                {/* Tabs */}
                 <div
-                    style={{ display: 'flex', flexDirection: 'column', gap: 18 }}
+                    style={{
+                        display: 'flex',
+                        height: 56,
+                        backgroundColor: PANEL,
+                        borderBottom: `2px solid ${BORDER}`,
+                    }}
                 >
-                    <div
-                        style={{
-                            fontSize: 108,
-                            fontWeight: 900,
-                            lineHeight: 1,
-                            letterSpacing: -3,
-                            textShadow: `7px 7px 0 ${CYAN}`,
-                        }}
-                    >
-                        {SITE_NAME}
-                    </div>
-                    <div
-                        style={{
-                            fontSize: 44,
-                            fontWeight: 800,
-                            color: CYAN,
-                            textShadow: `4px 4px 0 ${RED}`,
-                        }}
-                    >
-                        Software Engineer
-                    </div>
-                    <div
-                        style={{
-                            fontSize: 28,
-                            color: '#a3a9b8',
-                            maxWidth: 900,
-                            lineHeight: 1.4,
-                        }}
-                    >
-                        Building fast, scalable, user-focused products across
-                        web, mobile, and AI.
-                    </div>
+                    {TABS.map((tab, index) => (
+                        <div
+                            key={tab}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '0 30px',
+                                fontSize: 22,
+                                color: index === 0 ? TEXT : MUTED,
+                                backgroundColor: index === 0 ? BG : PANEL,
+                                borderTop: `4px solid ${index === 0 ? CYAN : PANEL}`,
+                                borderRight: `2px solid ${BORDER}`,
+                            }}
+                        >
+                            {tab}
+                        </div>
+                    ))}
                 </div>
 
-                <div style={{ display: 'flex', fontSize: 24, color: '#a3a9b8' }}>
-                    React / Next.js / Vue / Nuxt / React Native / Node.js /
-                    PostgreSQL
+                {/* README.md */}
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flexGrow: 1,
+                        justifyContent: 'center',
+                    }}
+                >
+                    <Line n={1}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'baseline',
+                                fontSize: 92,
+                                fontWeight: 900,
+                                letterSpacing: -3,
+                                lineHeight: 1.15,
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontSize: 54,
+                                    fontWeight: 400,
+                                    color: '#4a5870',
+                                    marginRight: 22,
+                                    letterSpacing: 0,
+                                }}
+                            >
+                                #
+                            </span>
+                            {SITE_NAME}
+                        </div>
+                    </Line>
+                    <Line n={2}>
+                        <div style={{ display: 'flex', fontSize: 34, color: CYAN }}>
+                            <span style={{ color: '#4a5870', marginRight: 16 }}>
+                                &gt;
+                            </span>
+                            {GENERAL_INFO.role} · {GENERAL_INFO.location}
+                        </div>
+                    </Line>
+                    <Line n={3} />
+                    <Line n={4}>
+                        <div style={{ display: 'flex', fontSize: 28, color: TEXT }}>
+                            Building fast, scalable, user-focused products across
+                            web, mobile, and AI.
+                        </div>
+                    </Line>
+                    <Line n={5} />
+                    <Line n={6}>
+                        <div style={{ display: 'flex', fontSize: 24 }}>
+                            <span style={{ color: KEYWORD, marginRight: 10 }}>
+                                const
+                            </span>
+                            <span style={{ color: FUNC, marginRight: 10 }}>
+                                stack
+                            </span>
+                            <span style={{ marginRight: 10 }}>= [</span>
+                            {STACK.map((item, index) => (
+                                <span key={item} style={{ display: 'flex' }}>
+                                    <span style={{ color: STRING }}>
+                                        &apos;{item}&apos;
+                                    </span>
+                                    {index < STACK.length - 1 && (
+                                        <span style={{ marginRight: 8 }}>,</span>
+                                    )}
+                                </span>
+                            ))}
+                            <span>];</span>
+                        </div>
+                    </Line>
+                </div>
+
+                {/* Status bar */}
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        height: 44,
+                        padding: '0 28px',
+                        backgroundColor: CYAN,
+                        color: '#0a0a0a',
+                        fontSize: 20,
+                        fontWeight: 600,
+                    }}
+                >
+                    <div style={{ display: 'flex' }}>main</div>
+                    <div style={{ display: 'flex' }}>Markdown · UTF-8</div>
                 </div>
             </div>
         ),
