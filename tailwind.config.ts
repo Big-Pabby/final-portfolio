@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 import tailwindAnimate from 'tailwindcss-animate';
 
 export default {
@@ -44,9 +45,12 @@ export default {
                     DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
                     foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
                 },
-                // Comic "ink" (outlines) and "paper" (light fills / hard shadows).
+                // Comic "ink" (always dark) and "paper" (always light).
                 ink: 'hsl(var(--ink) / <alpha-value>)',
                 paper: 'hsl(var(--paper) / <alpha-value>)',
+                // Outlines, dividers and hard shadows: whichever of ink or
+                // paper contrasts with the page in the current day/night theme.
+                line: 'hsl(var(--line) / <alpha-value>)',
                 border: 'hsl(var(--border) / <alpha-value>)',
                 input: 'hsl(var(--input) / <alpha-value>)',
                 ring: 'hsl(var(--ring) / <alpha-value>)',
@@ -58,15 +62,15 @@ export default {
                     '5': 'hsl(var(--chart-5))',
                 },
             },
-            // Hard, un-blurred offsets: the classic comic drop shadow.
+            // Subtle shadows for cards and interactive controls.
             boxShadow: {
-                comic: '5px 5px 0 0 hsl(var(--paper))',
-                'comic-lg': '8px 8px 0 0 hsl(var(--paper))',
-                'comic-sm': '3px 3px 0 0 hsl(var(--paper))',
-                'comic-ink': '5px 5px 0 0 hsl(var(--ink))',
-                'comic-primary': '6px 6px 0 0 hsl(var(--primary))',
-                'comic-primary-sm': '3px 3px 0 0 hsl(var(--primary))',
-                'comic-secondary': '6px 6px 0 0 hsl(var(--secondary))',
+                comic: '0 8px 24px rgb(0 0 0 / 0.18)',
+                'comic-lg': '0 12px 32px rgb(0 0 0 / 0.22)',
+                'comic-sm': '0 4px 12px rgb(0 0 0 / 0.16)',
+                'comic-ink': '0 8px 24px rgb(0 0 0 / 0.18)',
+                'comic-primary': '0 8px 24px hsl(var(--primary) / 0.12)',
+                'comic-primary-lg': '0 12px 32px hsl(var(--primary) / 0.16)',
+                'comic-primary-sm': '0 4px 12px hsl(var(--primary) / 0.12)',
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -75,12 +79,22 @@ export default {
             },
             fontFamily: {
                 display: [
-                    'var(--font-bangers)',
-                    'Impact',
-                    'Arial Narrow Bold',
+                    'var(--font-roboto-flex)',
                     'sans-serif',
                 ],
-                'roboto-flex': ['var(--font-roboto-flex)'],
+                sans: [
+                    'var(--font-roboto-flex)',
+                    'ui-sans-serif',
+                    'system-ui',
+                    'sans-serif',
+                ],
+                mono: [
+                    'var(--font-geist-mono)',
+                    'ui-monospace',
+                    'SFMono-Regular',
+                    'Menlo',
+                    'monospace',
+                ],
             },
             padding: {
                 section: '250px',
@@ -101,5 +115,11 @@ export default {
             },
         },
     },
-    plugins: [tailwindAnimate],
+    plugins: [
+        tailwindAnimate,
+        // `day:` styles apply while the day theme is on (see app/globals.css).
+        plugin(({ addVariant }) => {
+            addVariant('day', ':root[data-theme="day"] &');
+        }),
+    ],
 } satisfies Config;

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import Button from '@/components/Button';
-import Starburst from '@/components/Starburst';
+import Link from 'next/link';
+import Editor from '@/components/editor/Editor';
+import { C, F, K, L, S } from '@/components/editor/tokens';
 
 export const metadata: Metadata = {
     title: 'Page not found',
@@ -9,22 +10,23 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
     return (
-        <section className="container flex min-h-[calc(100svh-80px)] flex-col items-center justify-center py-20 text-center">
-            <Starburst className="mb-8 size-40" tilt={-8}>
-                <span className="text-4xl">404!</span>
-            </Starburst>
-            <h1 className="comic-title text-6xl leading-none sm:text-8xl">
-                Page not found
-            </h1>
-            <p className="mt-6 max-w-md text-lg text-muted-foreground">
-                The page you&apos;re looking for doesn&apos;t exist or has been
-                moved.
-            </p>
-            <div className="mt-10">
-                <Button as="link" href="/" variant="primary">
-                    Back home
-                </Button>
-            </div>
-        </section>
+        <Editor>
+            <L>
+                <h1 className="syn-c inline">{'// 404: this file doesn’t exist, or it has moved.'}</h1>
+            </L>
+            <L />
+            <L>
+                <K>throw new</K> <F>Error</F>(<S>&apos;File not found&apos;</S>);
+            </L>
+            <L />
+            <L>
+                <C>{'// Try '}</C>
+                <Link href="/" className="link">
+                    README.md
+                </Link>
+                <C>{', or press Ctrl + K to search every file.'}</C>
+            </L>
+            <L />
+        </Editor>
     );
 }

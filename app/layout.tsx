@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { Bangers, Roboto_Flex } from 'next/font/google';
+import { Geist_Mono, Roboto_Flex } from 'next/font/google';
 import Script from 'next/script';
 
-import 'lenis/dist/lenis.css';
 import './globals.css';
-import RootClientWrapper from './_components/RootClientWrapper';
+import IdeShell from '@/components/ide/IdeShell';
 import {
     SITE_DESCRIPTION,
     SITE_NAME,
@@ -12,21 +11,21 @@ import {
     SITE_URL,
     TWITTER_HANDLE,
 } from '@/lib/site';
+import { THEME_INIT_SCRIPT } from '@/lib/theme';
 
-// Comic-book display face for headings, captions and buttons.
-const bangersFont = Bangers({
-    weight: '400',
-    style: 'normal',
-    subsets: ['latin'],
-    variable: '--font-bangers',
-    display: 'swap',
-});
-
+// Editor chrome and Markdown prose.
 const robotoFlex = Roboto_Flex({
     weight: ['100', '400', '500', '600', '700', '800'],
     style: 'normal',
     subsets: ['latin'],
     variable: '--font-roboto-flex',
+    display: 'swap',
+});
+
+// Code.
+const geistMono = Geist_Mono({
+    subsets: ['latin'],
+    variable: '--font-geist-mono',
     display: 'swap',
 });
 
@@ -78,8 +77,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
     width: 'device-width',
     initialScale: 1,
-    themeColor: '#0b0f1a',
-    colorScheme: 'dark',
+    themeColor: '#080d17',
+    colorScheme: 'dark light',
 };
 
 export default function RootLayout({
@@ -88,7 +87,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        // data-theme is set by THEME_INIT_SCRIPT before React hydrates.
+        <html lang="en" suppressHydrationWarning>
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+                />
+            </head>
             <Script id="hotjar" strategy="afterInteractive">
                 {`(function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -100,12 +105,12 @@ export default function RootLayout({
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
             </Script>
             <body
-                className={`${bangersFont.variable} ${robotoFlex.variable} antialiased`}
+                className={`${robotoFlex.variable} ${geistMono.variable} antialiased`}
             >
                 <a href="#main" className="skip-link">
                     Skip to content
                 </a>
-                <RootClientWrapper>{children}</RootClientWrapper>
+                <IdeShell>{children}</IdeShell>
             </body>
         </html>
     );

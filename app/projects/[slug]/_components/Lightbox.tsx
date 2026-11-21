@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef } from 'react';
-import { useLenis } from 'lenis/react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface Props {
@@ -16,10 +15,9 @@ interface Props {
 
 /**
  * Full-size, scrollable viewer for project screenshots.
- * Supports Escape / arrow keys, click-outside to close and locks page scroll.
+ * Supports Escape / arrow keys and click-outside to close.
  */
 const Lightbox = ({ images, title, index, onClose, onNavigate }: Props) => {
-    const lenis = useLenis();
     const dialogRef = useRef<HTMLDivElement>(null);
     const isOpen = index !== null;
     const count = images.length;
@@ -37,7 +35,6 @@ const Lightbox = ({ images, title, index, onClose, onNavigate }: Props) => {
     useEffect(() => {
         if (!isOpen) return;
 
-        lenis?.stop();
         dialogRef.current?.focus({ preventScroll: true });
 
         const onKeyDown = (e: KeyboardEvent) => {
@@ -49,9 +46,8 @@ const Lightbox = ({ images, title, index, onClose, onNavigate }: Props) => {
 
         return () => {
             window.removeEventListener('keydown', onKeyDown);
-            lenis?.start();
         };
-    }, [isOpen, lenis, onClose, goPrev, goNext]);
+    }, [isOpen, onClose, goPrev, goNext]);
 
     // Reset the scroll position when switching images.
     useEffect(() => {
@@ -69,7 +65,6 @@ const Lightbox = ({ images, title, index, onClose, onNavigate }: Props) => {
             aria-modal="true"
             aria-label={`${title} screenshots`}
             tabIndex={-1}
-            data-lenis-prevent
             onClick={onClose}
             className="fixed inset-0 z-[60] overflow-y-auto bg-background/95 backdrop-blur-sm outline-none"
         >

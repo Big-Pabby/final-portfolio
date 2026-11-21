@@ -5,8 +5,8 @@ export const alt = `${SITE_NAME} - Software Engineer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const YELLOW = '#ffd60a';
-const BLUE = '#1a80ff';
+const CYAN = '#1fd5f9';
+const RED = '#e5394a';
 const INK = '#0a0a0a';
 const PAPER = '#fafafa';
 
@@ -22,8 +22,8 @@ export default function OpenGraphImage() {
                     justifyContent: 'space-between',
                     padding: 64,
                     background:
-                        'radial-gradient(circle at 90% 0%, rgba(26,128,255,0.35) 0%, rgba(11,15,26,1) 55%)',
-                    backgroundColor: '#0b0f1a',
+                        'radial-gradient(circle at 90% 0%, rgba(31,213,249,0.22) 0%, rgba(8,13,23,1) 55%)',
+                    backgroundColor: '#080d17',
                     color: PAPER,
                     fontFamily: 'sans-serif',
                 }}
@@ -39,7 +39,7 @@ export default function OpenGraphImage() {
                         style={{
                             display: 'flex',
                             padding: '10px 18px',
-                            background: YELLOW,
+                            background: CYAN,
                             color: INK,
                             border: `4px solid ${INK}`,
                             boxShadow: `6px 6px 0 ${PAPER}`,
@@ -65,7 +65,7 @@ export default function OpenGraphImage() {
                             fontWeight: 900,
                             lineHeight: 1,
                             letterSpacing: -3,
-                            textShadow: `7px 7px 0 ${YELLOW}`,
+                            textShadow: `7px 7px 0 ${CYAN}`,
                         }}
                     >
                         {SITE_NAME}
@@ -74,8 +74,8 @@ export default function OpenGraphImage() {
                         style={{
                             fontSize: 44,
                             fontWeight: 800,
-                            color: YELLOW,
-                            textShadow: `4px 4px 0 ${BLUE}`,
+                            color: CYAN,
+                            textShadow: `4px 4px 0 ${RED}`,
                         }}
                     >
                         Software Engineer

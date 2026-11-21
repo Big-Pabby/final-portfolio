@@ -1,7 +1,8 @@
-import { IProject } from '@/types';
+import { IProject, ITestimonial, IWorkHabit } from '@/types';
 
 export const GENERAL_INFO = {
     name: 'Victor Adekunle',
+    role: 'Software Engineer',
     email: 'victoradekunle312@gmail.com',
 
     emailSubject: "Let's collaborate on a project",
@@ -10,8 +11,11 @@ export const GENERAL_INFO = {
     oldPortfolio: 'https://medium.com/@victoradekunle312',
     upworkProfile: 'mailto:victoradekunle312@gmail.com',
     resume: '/Victor_Adekunle_CV.pdf',
-    // Shown as a status pill in the hero. Set to '' to hide it.
+    // Shown in README.md, the status bar and contact.sh. Set to '' to hide it.
     availability: 'Open to new opportunities',
+    // Shown next to a live clock.
+    location: 'Nigeria',
+    timeZone: 'Africa/Lagos',
 };
 
 export const STATS = [
@@ -134,6 +138,10 @@ export const PROJECTS: IProject[] = [
     {
         title: 'BaissonCV',
         slug: 'baissoncv',
+        summary: 'Your résumé on a URL, with AI writing, an ATS scanner, live job matching and a recruiter inbox.',
+        category: 'AI · Careers',
+        featured: true,
+        status: 'Live',
         techStack: [
             'Next.js',
             'TypeScript',
@@ -177,6 +185,10 @@ Designed and built BaissonCV end to end — product, frontend, backend, and AI f
     {
         title: 'Parrot',
         slug: 'parrot',
+        summary: 'A social review platform for customers and businesses, across web, admin and a React Native app.',
+        category: 'Social reviews',
+        featured: true,
+        status: 'Live',
         liveUrl: 'https://www.parrot.cx/',
         year: 2023,
         description: `
@@ -230,6 +242,10 @@ Built and maintained customer, business, and admin experiences across web and mo
     {
         title: 'Cando',
         slug: 'cando',
+        summary: 'Maps local UK services from scraped, cleaned data, with an AI chat that answers by location.',
+        category: 'Civic tech',
+        featured: true,
+        status: 'Live',
         techStack: [
             'Nuxtjs',
             'Tanstack Query',
@@ -276,6 +292,10 @@ Owned and delivered the frontend experience for both the public-facing web appli
     {
         title: 'Plotweaver',
         slug: 'plotweaver',
+        summary: 'AI script analysis that helps writers turn early drafts into production-ready screenplays.',
+        category: 'AI · Film',
+        featured: true,
+        status: 'Live',
         techStack: [
             'Next.js',
             'Shadcn',
@@ -311,6 +331,9 @@ Led the design and implementation of the frontend experience for an AI-driven sc
     {
         title: 'Plotweaver Translator',
         slug: 'plotweaver-translator',
+        summary: 'Record, validate and manage audio translations at scale.',
+        category: 'Language data',
+        status: 'Live',
         techStack: [
             'Next.js',
             'Shadcn',
@@ -343,6 +366,10 @@ Built and maintained the frontend workflows for a role-based audio translation a
     {
         title: 'Vuhosi',
         slug: 'vuhosi',
+        summary: 'Turns founders’ documents into investor insights, with AI mentors to question.',
+        category: 'AI · Venture',
+        featured: true,
+        status: 'Live',
         techStack: [
             'Nuxt.js',
             'TypeScript',
@@ -396,6 +423,9 @@ Built the frontend experience and the AI-driven workflows for an AI platform ser
     {
         title: 'Lagos Youth Storytelling',
         slug: 'storytelling',
+        summary: 'A statewide writing competition open to 200,000+ students, with AI-assisted judging.',
+        category: 'Edtech · Government',
+        featured: true,
         techStack: [
             'Next.js',
             'Shadcn',
@@ -436,6 +466,9 @@ Built the frontend of the competition platform with the Plotweaver team.
     {
         title: 'HomeBridge',
         slug: 'homebridge',
+        summary: 'Housing listings and the services around them, from the Next.js client to the Node API.',
+        category: 'Proptech',
+        featured: true,
         techStack: [
             'Next.js',
             'Node.js',
@@ -475,6 +508,8 @@ Worked across the stack, collaborating on the backend alongside building the fro
     {
         title: 'GTV Reviewer',
         slug: 'gtv-reviewer',
+        summary: 'AI review of UK Global Talent Visa applications against the official criteria.',
+        category: 'AI · Immigration',
         techStack: ['Next.js', 'Shadcn', 'Websockets', 'Tailwind CSS'],
         thumbnail: '/projects/thumbnail/gtv.jpg',
         images: [
@@ -507,6 +542,8 @@ Built the web application for an AI-driven visa application review service.
     {
         title: 'TasteClan',
         slug: 'tasteclan',
+        summary: 'Food ordering and a food community for students in Akure.',
+        category: 'Food delivery',
         techStack: ['React.js', 'Zustand', 'Tanstack Query', 'Tailwind CSS'],
         thumbnail: '/projects/thumbnail/tasteclan.jpg',
         images: [
@@ -563,3 +600,72 @@ export const MY_EXPERIENCE = [
         duration: 'Aug 2022 - Jan 2023',
     },
 ];
+
+// Draft copy, grounded in the project write-ups above. Edit freely.
+export const WORK_HABITS: IWorkHabit[] = [
+    {
+        title: 'I own the whole feature',
+        body: 'From the database schema to the last loading state. I take features across the stack, so nothing gets lost in a handoff.',
+        proof: [
+            {
+                slug: 'baissoncv',
+                line: 'Designed and built it end to end: the résumé editor, the AI pipeline, job APIs, magic-link auth and Stripe billing.',
+            },
+            {
+                slug: 'homebridge',
+                line: 'Modelled the PostgreSQL schema in Prisma and built the Express endpoints the Next.js client runs on.',
+            },
+            {
+                slug: 'cando',
+                line: 'Owned the frontend for both the public map app and the admin tools that manage every listing.',
+            },
+        ],
+    },
+    {
+        title: 'I make AI do real work',
+        body: 'Parsing, scoring and feedback that people rely on, with live progress so nobody is left staring at a spinner.',
+        proof: [
+            {
+                slug: 'vuhosi',
+                line: 'Built the prompt pipelines and LLM integrations that turn pitch decks into risk, team and market insights.',
+            },
+            {
+                slug: 'plotweaver',
+                line: 'Wired WebSockets so writers watch the AI analysis progress live, then edit their script from its feedback.',
+            },
+            {
+                slug: 'gtv-reviewer',
+                line: 'Streamed review progress in real time while AI agents check visa evidence against the official criteria.',
+            },
+        ],
+    },
+    {
+        title: 'I build for the real device',
+        body: 'Mobile apps, data-heavy dashboards and students submitting from their phones. I tune for the conditions people actually use.',
+        proof: [
+            {
+                slug: 'parrot',
+                line: 'Tuned the React Native app for fast loading and reliable behaviour on real Android and iOS devices.',
+            },
+            {
+                slug: 'storytelling',
+                line: 'Built a submission flow that works for students writing and uploading stories from their phones.',
+            },
+            {
+                slug: 'plotweaver-translator',
+                line: 'Kept the data-heavy recorder and admin dashboards fast, on desktop and mobile.',
+            },
+        ],
+    },
+];
+
+// Real quotes only. testimonials.md stays out of the file tree while this
+// list is empty. Example entry:
+// {
+//     name: 'Jane Doe',
+//     role: 'CTO',
+//     company: 'Plotweaver',
+//     quote: 'Victor shipped our editor in half the time we planned.',
+//     url: 'https://www.linkedin.com/in/janedoe/',
+// },
+export const TESTIMONIALS: ITestimonial[] = [];

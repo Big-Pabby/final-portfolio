@@ -13,6 +13,10 @@ export const stripHtml = (html: string) =>
         .replace(/\s+/g, ' ')
         .trim();
 
+/** The job title on the first line of a project's `role` HTML, e.g. "Software Engineer". */
+export const getRoleTitle = (role: string) =>
+    stripHtml(role.split(/<br\s*\/?>/i)[0]);
+
 /** Trim text to a maximum length, adding an ellipsis when cut. */
 export const truncate = (text: string, max = 160) =>
     text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`;
@@ -30,6 +34,31 @@ export const prefersReducedMotion = () =>
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-export const hasFinePointer = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+export interface TextBlock {
+    type: 'paragraph' | 'item' | 'label';
+    text: string;
+}
+
+/**
+ * Turn the simple HTML used in project write-ups (text, <br/>, <ul><li>)
+ * into plain blocks, so each one can be its own line in the editor.
+ * A short line ending in a colon, e.g. "Key Features:", becomes a label.
+ */
+export const htmlToBlocks = (html: string): TextBlock[] =>
+    html
+        .replace(/<li>/gi, '\n- ')
+        .replace(/<\/li>|<\/?ul>|<br\s*\/?>/gi, '\n')
+        .replace(/<[^>]+>/g, '')
+        .replace(/&amp;/g, '&')
+        .split('\n')
+        .map((line) => line.replace(/\s+/g, ' ').trim())
+        .filter((line) => line && line !== '.')
+        .map((line): TextBlock => {
+            if (line.startsWith('- ')) {
+                return { type: 'item', text: line.slice(2) };
+            }
+            if (line.endsWith(':') && line.length < 40) {
+                return { type: 'label', text: line.slice(0, -1) };
+            }
+            return { type: 'paragraph', text: line };
+        });
