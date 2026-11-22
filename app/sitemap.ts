@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { PROJECTS } from '@/lib/data';
-import { FILES } from '@/lib/files';
+import { CV_FILE, FILES } from '@/lib/files';
 import { SITE_URL } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,8 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const projectHrefs = PROJECTS.map((project) => `/projects/${project.slug}`);
 
-    // Every file in the editor is a page.
-    return FILES.map((file) => ({
+    // Every file in the editor is a page. The CV viewer is left out: it only
+    // frames the PDF, so search engines are pointed away from it.
+    return FILES.filter((file) => file !== CV_FILE).map((file) => ({
         url: `${SITE_URL}${file.href}`,
         lastModified,
         changeFrequency: projectHrefs.includes(file.href)

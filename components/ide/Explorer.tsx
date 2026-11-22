@@ -15,15 +15,6 @@ const FileRow = ({ file, depth }: { file: IFile; depth: number }) => {
     const isActive = pathname === file.href;
     const style = { paddingLeft: `${depth * 12 + 22}px` };
 
-    if (file.download) {
-        return (
-            <a href={file.href} download className={ROW} style={style}>
-                <FileIcon lang={file.lang} />
-                <span className="truncate">{file.name}</span>
-            </a>
-        );
-    }
-
     return (
         <Link
             href={file.href}

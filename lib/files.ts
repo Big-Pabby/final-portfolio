@@ -20,8 +20,6 @@ export interface IFile {
     lang: FileLang;
     /** Plain-language label for search, e.g. "Contact". */
     title: string;
-    /** A real file to download rather than a page to open. */
-    download?: boolean;
 }
 
 export interface IFolder {
@@ -60,15 +58,13 @@ export const PROJECTS_FOLDER: IFolder = {
     ],
 };
 
-export const CV_FILE: IFile = {
-    ...file(
-        GENERAL_INFO.resume.replace(/^\//, ''),
-        GENERAL_INFO.resume,
-        'PDF',
-        'Download CV',
-    ),
-    download: true,
-};
+/** My CV. It opens in the editor's PDF viewer, which also offers the download. */
+export const CV_FILE = file(
+    GENERAL_INFO.resume.replace(/^\//, ''),
+    '/cv',
+    'PDF',
+    'CV',
+);
 
 /** The file tree, in the order the Explorer shows it. */
 export const TREE: (IFile | IFolder)[] = [
@@ -86,10 +82,10 @@ export const TREE: (IFile | IFolder)[] = [
     CV_FILE,
 ];
 
-/** Every file that opens in the editor (so not the CV download). */
+/** Every file that opens in the editor. */
 export const FILES: IFile[] = TREE.flatMap((node) =>
     node.kind === 'folder' ? node.children : [node],
-).filter((item) => !item.download);
+);
 
 export const README = FILES.find((item) => item.href === '/') as IFile;
 
@@ -107,14 +103,13 @@ export const resolveFile = (input: string, cwd = '') => {
         .toLowerCase();
     if (!query) return undefined;
 
-    const candidates = [...FILES, CV_FILE];
     const stem = (value: string) => value.replace(/\.[a-z]+$/, '');
     const matches = (target: string) =>
         target.toLowerCase() === query || stem(target.toLowerCase()) === query;
 
     return (
-        candidates.find((item) => cwd && matches(item.path.replace(`${cwd}/`, '')) && item.path.startsWith(`${cwd}/`)) ??
-        candidates.find((item) => matches(item.path)) ??
-        candidates.find((item) => matches(item.name))
+        FILES.find((item) => cwd && matches(item.path.replace(`${cwd}/`, '')) && item.path.startsWith(`${cwd}/`)) ??
+        FILES.find((item) => matches(item.path)) ??
+        FILES.find((item) => matches(item.name))
     );
 };

@@ -117,11 +117,6 @@ const Terminal = () => {
 
     const openFile = useCallback(
         (file: IFile) => {
-            if (file.download) {
-                downloadCv();
-                print(`Downloading ${file.name}…`);
-                return;
-            }
             router.push(file.href);
             print(
                 <>
