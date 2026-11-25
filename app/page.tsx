@@ -148,6 +148,22 @@ export default function Home() {
                 </Bullet>
             ))}
             <L />
+            <H2>Writing</H2>
+            <L />
+            <Para>
+                I write about building for web, mobile and AI on my blog,{' '}
+                <a
+                    href={GENERAL_INFO.blog}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link font-semibold text-foreground"
+                    aria-label="Notes from Victor (opens in a new tab)"
+                >
+                    Notes from Victor
+                </a>
+                .
+            </Para>
+            <L />
             <Para>
                 <Link href="/projects" className="link">
                     See all {PROJECTS.length} projects

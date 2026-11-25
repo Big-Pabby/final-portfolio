@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from 'next';
 import { Geist_Mono, Roboto_Flex } from 'next/font/google';
 import Script from 'next/script';
@@ -8,6 +9,7 @@ import {
     SITE_DESCRIPTION,
     SITE_NAME,
     SITE_TITLE,
+    SHARE_IMAGE,
     SITE_URL,
     TWITTER_HANDLE,
 } from '@/lib/site';
@@ -63,12 +65,14 @@ export const metadata: Metadata = {
         title: SITE_TITLE,
         description: SITE_DESCRIPTION,
         locale: 'en_US',
+        images: [SHARE_IMAGE],
     },
     twitter: {
         card: 'summary_large_image',
         title: SITE_TITLE,
         description: SITE_DESCRIPTION,
         creator: TWITTER_HANDLE,
+        images: [SHARE_IMAGE],
     },
     robots: {
         index: true,
@@ -114,6 +118,7 @@ export default function RootLayout({
                     Skip to content
                 </a>
                 <IdeShell>{children}</IdeShell>
+                <Analytics />
             </body>
         </html>
     );

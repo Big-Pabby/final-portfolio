@@ -46,6 +46,7 @@ const COMMANDS: [name: string, usage: string, about: string][] = [
     ['stack', '', 'The tools I use'],
     ['experience', '', 'Where I have worked (also: git log)'],
     ['contact', '', 'How to reach me'],
+    ['blog', '', 'Open my blog, Notes from Victor'],
     ['email', '', 'Start an email to me'],
     ['cv', '', 'Download my CV'],
     ['theme', '[day|night]', 'Switch the editor theme'],
@@ -378,6 +379,24 @@ const Terminal = () => {
                 case 'email':
                     window.location.href = MAILTO;
                     print(`Opening your mail app to write to ${GENERAL_INFO.email}…`);
+                    break;
+
+                case 'blog':
+                    window.open(GENERAL_INFO.blog, '_blank', 'noopener');
+                    print(
+                        <>
+                            Opening{' '}
+                            <a
+                                className="link"
+                                href={GENERAL_INFO.blog}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {GENERAL_INFO.blog.replace(/^https?:\/\/|\/$/g, '')}
+                            </a>{' '}
+                            in a new tab…
+                        </>,
+                    );
                     break;
 
                 case 'cv':

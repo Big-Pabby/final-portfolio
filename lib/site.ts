@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 /**
- * Site-wide constants shared by metadata, sitemap, robots and the OG image.
+ * Site-wide constants shared by metadata, sitemap and robots.
  * Update SITE_URL when the domain changes.
  */
 export const SITE_URL = 'https://victor-adekunle-swart.vercel.app';
@@ -11,12 +11,15 @@ export const SITE_DESCRIPTION =
     'Personal portfolio of Victor Adekunle — a software engineer building scalable web, mobile, and AI-powered products across the full stack.';
 export const TWITTER_HANDLE = '@Big__Pabby';
 
-/** The share image drawn by app/opengraph-image.tsx. */
+/**
+ * The image shown when a link to the site is shared: public/cover-image.png.
+ * Keep width and height in step with the file if it is replaced.
+ */
 export const SHARE_IMAGE = {
-    url: '/opengraph-image',
-    width: 1200,
-    height: 630,
-    alt: `${SITE_NAME} - Software Engineer. README.md open in a code editor.`,
+    url: '/cover-image.png',
+    width: 1918,
+    height: 903,
+    alt: `${SITE_NAME}’s portfolio: a code editor with README.md open and a terminal below.`,
 };
 
 interface PageMeta {

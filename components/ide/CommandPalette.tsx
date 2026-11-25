@@ -1,5 +1,6 @@
 'use client';
 import {
+    BookOpen,
     Copy,
     Download,
     Github,
@@ -11,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { GENERAL_INFO } from '@/lib/data';
 import { FILES } from '@/lib/files';
 import { cn } from '@/lib/utils';
 import { copyEmail, downloadCv, GITHUB_URL, MAILTO } from './commands';
@@ -116,6 +118,14 @@ const CommandPalette = () => {
                 icon: icon(<Github size={15} />),
                 isCommand: true,
                 run: () => window.open(GITHUB_URL, '_blank', 'noopener'),
+            },
+            {
+                id: 'blog',
+                label: 'Open blog: Notes from Victor',
+                detail: 'Opens in a new tab',
+                icon: icon(<BookOpen size={15} />),
+                isCommand: true,
+                run: () => window.open(GENERAL_INFO.blog, '_blank', 'noopener'),
             },
         ];
     }, [

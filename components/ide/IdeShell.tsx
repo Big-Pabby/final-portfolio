@@ -1,5 +1,6 @@
 'use client';
 import {
+    BookOpen,
     Download,
     Files,
     GitBranch,
@@ -158,6 +159,16 @@ const Shell = ({ children }: { children: ReactNode }) => {
                         className={ACTIVITY_BTN}
                     >
                         <Github size={21} strokeWidth={1.5} aria-hidden="true" />
+                    </a>
+                    <a
+                        href={GENERAL_INFO.blog}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="My blog, Notes from Victor (opens in a new tab)"
+                        title="Blog: Notes from Victor"
+                        className={ACTIVITY_BTN}
+                    >
+                        <BookOpen size={21} strokeWidth={1.5} aria-hidden="true" />
                     </a>
                     <button
                         type="button"

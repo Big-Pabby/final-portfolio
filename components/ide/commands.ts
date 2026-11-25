@@ -11,6 +11,7 @@ export const SOCIAL_LABELS: Record<string, string> = {
     github: 'GitHub',
     linkedin: 'LinkedIn',
     twitter: 'X',
+    blog: 'Blog',
     medium: 'Medium',
 };
 

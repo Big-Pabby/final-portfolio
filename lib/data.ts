@@ -9,6 +9,8 @@ export const GENERAL_INFO = {
     emailBody: 'Hi Victor, I am reaching out to you because...',
 
     oldPortfolio: 'https://medium.com/@victoradekunle312',
+    // My personal blog, "Notes from Victor".
+    blog: 'https://notes.victoradekunle.me/',
     upworkProfile: 'mailto:victoradekunle312@gmail.com',
     resume: '/Victor_Adekunle_CV.pdf',
     // Shown in README.md, the status bar and contact.sh. Set to '' to hide it.
@@ -28,6 +30,7 @@ export const SOCIAL_LINKS = [
     { name: 'github', url: 'https://github.com/Big-Pabby' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/victoradekunle/' },
     { name: 'twitter', url: 'https://x.com/Big__Pabby' },
+    { name: 'blog', url: GENERAL_INFO.blog },
     { name: 'medium', url: GENERAL_INFO.oldPortfolio },
 ];
 

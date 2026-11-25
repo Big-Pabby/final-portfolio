@@ -103,6 +103,19 @@ export default function AboutPage() {
             <Field name="offTheClock">
                 [{list(['manga & manhwa', 'anime', 'battle royale games'])}]
             </Field>
+            <L indent={1}>
+                <P>blog</P>:{' '}
+                <a
+                    className="link"
+                    href={GENERAL_INFO.blog}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="My blog, Notes from Victor (opens in a new tab)"
+                >
+                    <S>&apos;{GENERAL_INFO.blog.replace(/^https?:\/\/|\/$/g, '')}&apos;</S>
+                </a>
+                ,
+            </L>
             <L>{'};'}</L>
             <L />
         </Editor>
